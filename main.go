@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/goWebServices/one-o-one/database"
 	"log"
 	"net/http"
 	"time"
@@ -21,6 +22,7 @@ func middlewareHandler(handler http.Handler) http.Handler {
 const apiBasePath = "/api"
 
 func main() {
+	database.SetupDatabase()
 	product.SetupRoutes(apiBasePath)
 	err := http.ListenAndServe(":5000", nil)
 
