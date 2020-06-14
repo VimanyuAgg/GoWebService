@@ -6,6 +6,7 @@ import (
 	"github.com/goWebServices/one-o-one/config"
 	"log"
 	_ "github.com/go-sql-driver/mysql"
+	"time"
 )
 
 var DbConn *sql.DB
@@ -16,5 +17,8 @@ func SetupDatabase() {
 	if err != nil {
 		log.Fatal("Error while making DBConnection...", err)
 	}
+	DbConn.SetMaxIdleConns(4)
+	DbConn.SetMaxOpenConns(4)
+	DbConn.SetConnMaxLifetime(60* time.Second)
 
 }
