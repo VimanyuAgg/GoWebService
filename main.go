@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/goWebServices/one-o-one/database"
+	"github.com/goWebServices/one-o-one/receipt"
 	"log"
 	"net/http"
 	"time"
@@ -24,6 +25,7 @@ const apiBasePath = "/api"
 func main() {
 	database.SetupDatabase()
 	product.SetupRoutes(apiBasePath)
+	receipt.SetupRoutes(apiBasePath)
 	err := http.ListenAndServe(":5000", nil)
 
 	if err != nil {
